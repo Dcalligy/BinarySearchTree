@@ -26,9 +26,9 @@ int max(int a, int b){
 
 struct node* Insert(struct node *node, int key){
 
-  // Could have created another function called newNode to make life easier but.... 
+  	// Could have created another function called newNode to make life easier but.... 
 	if(node == NULL){
-  // 1. Perform normal binary search tree inserstion 
+  		// 1. Perform normal binary search tree insertion 
 		struct node* node = (struct node* )malloc(sizeof(struct node));
 		node->key = key;
 		node->left = NULL;
@@ -36,13 +36,13 @@ struct node* Insert(struct node *node, int key){
 		node->height = 1;
 		return node;
 	}
-  // right inserstion
+  	// right insertion
 	if(key > (node->key))
 		node->right = Insert(node->right, key);
-  // left
+  	// left insertion
 	else
 		node->left = Insert(node->left, key);
-  // 2. Update the height of node
+  	// 2. Update the height of node
 	node->height = max(height(node->left), height(node->right)) + 1;
 
 	return node;
@@ -58,13 +58,13 @@ struct node* Delete(struct node *node, int key){
 	else if(key > node->key)
 		node->right = Delete(node->right, key);
 	else{
-    // delete the node and replace with min element in right subtree or max element in the left subtree
+    		// delete the node and replace with min element in right subtree or max element in the left subtree
 		if(node->right && node->left){
 
 			node->right = Delete(node->right, node->key);
 		}
 		else{
-      // remove only one or zero children, then directly remove it from the tree and connect parent to its child
+      			// remove only one or zero children, then directly remove it from the tree and connect parent to its child
 			temp = node;
 			if(node->left == NULL)
 				node = node->right;
