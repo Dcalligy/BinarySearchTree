@@ -26,9 +26,9 @@ int max(int a, int b){
 
 struct node* Insert(struct node *node, int key){
 
-  	// Could have created another function called newNode to make life easier but.... 
+	// Could have created another function called newNode to make life easier but....
 	if(node == NULL){
-  		// 1. Perform normal binary search tree insertion 
+		// 1. Perform normal binary search tree insertion
 		struct node* node = (struct node* )malloc(sizeof(struct node));
 		node->key = key;
 		node->left = NULL;
@@ -36,13 +36,13 @@ struct node* Insert(struct node *node, int key){
 		node->height = 1;
 		return node;
 	}
-  	// right insertion
+	// right insertion
 	if(key > (node->key))
 		node->right = Insert(node->right, key);
-  	// left insertion
+	// left
 	else
 		node->left = Insert(node->left, key);
-  	// 2. Update the height of node
+	// 2. Update the height of node
 	node->height = max(height(node->left), height(node->right)) + 1;
 
 	return node;
@@ -58,13 +58,13 @@ struct node* Delete(struct node *node, int key){
 	else if(key > node->key)
 		node->right = Delete(node->right, key);
 	else{
-    		// delete the node and replace with min element in right subtree or max element in the left subtree
+		// delete the node and replace with min element in right subtree or max element in the left subtree
 		if(node->right && node->left){
 
 			node->right = Delete(node->right, node->key);
 		}
 		else{
-      			// remove only one or zero children, then directly remove it from the tree and connect parent to its child
+			// remove only one or zero children, then directly remove it from the tree and connect parent to its child
 			temp = node;
 			if(node->left == NULL)
 				node = node->right;
@@ -112,23 +112,28 @@ int main()
 	root = Insert(root, 18);
 	root = Insert(root, 66);
 	root = Insert(root, 26);
+	root = Insert(root, 234);
+	root = Insert(root, 666);
+	root = Insert(root, -2);
+
 	printf("PreOrder traversal is as follows\n");
 	preOrder(root);
-	printf("\n");
+	printf("\n\n");
 
 	printf("Node's deleted, PreOrder traversal is as follows\n");
 	root = Delete(root, 5);
 	root = Delete(root, 18);
 	preOrder(root);
-	printf("\n");
+	printf("\n\n");
 
+	root = Delete(root, -2);
 	printf("InOrder traversal is as follows\n");
 	inOrder(root);
-	printf("\n");
+	printf("\n\n");
 
 	printf("PosOrder traversal is as follows\n");
 	postOrder(root);
-	printf("\n");
+	printf("\n\n");
 
 	return 0;
 }
