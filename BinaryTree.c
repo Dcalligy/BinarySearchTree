@@ -103,8 +103,8 @@ void postOrder(struct node *root){
 	}
 }
 
-int main()
-{
+int main(){
+	
 	struct node *root = NULL;
 	root = Insert(root, 1);
 	root = Insert(root, 20);
