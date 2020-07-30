@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 struct node{
-
 	int key;
 	struct node *left;
 	struct node *right;
@@ -12,7 +11,6 @@ struct node{
 
 // Get height of the tree
 int height(struct node *N){
-
 	if(N == NULL)
 		return 0;
 	return N->height;
@@ -20,12 +18,10 @@ int height(struct node *N){
 
 // Function to get max of two integers
 int max(int a, int b){
-
 	return (a > b)? a : b;
 }
 
 struct node* Insert(struct node *node, int key){
-
 	// Could have created another function called newNode to make life easier but....
 	if(node == NULL){
 		// 1. Perform normal binary search tree insertion
@@ -49,8 +45,8 @@ struct node* Insert(struct node *node, int key){
 }
 
 struct node* Delete(struct node *node, int key){
-
 	struct node *temp;
+
 	if(node == NULL)
 		printf("Element not found");
 	else if(key < node->key)
@@ -77,7 +73,6 @@ struct node* Delete(struct node *node, int key){
 }
 
 void preOrder(struct node *root){
-
 	if(root != NULL){
 		printf("%d/%d ", root->key, root->height);
 		preOrder(root->left);
@@ -86,7 +81,6 @@ void preOrder(struct node *root){
 }
 
 void inOrder(struct node *root){
-
 	if(root != NULL){
 		inOrder(root->left);
 		printf("%d/%d ", root->key, root->height);
@@ -95,7 +89,6 @@ void inOrder(struct node *root){
 }
 
 void postOrder(struct node *root){
-
 	if(root != NULL){
 		postOrder(root->left);
 		postOrder(root->right);
@@ -103,8 +96,7 @@ void postOrder(struct node *root){
 	}
 }
 
-int main(){
-	
+int main(){	
 	struct node *root = NULL;
 	root = Insert(root, 1);
 	root = Insert(root, 20);
@@ -134,6 +126,5 @@ int main(){
 	printf("PosOrder traversal is as follows\n");
 	postOrder(root);
 	printf("\n\n");
-
 	return 0;
 }
